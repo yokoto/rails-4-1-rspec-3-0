@@ -1,18 +1,30 @@
-guard :rspec, cmd: 'spring rspec --color --format documentation',
-  all_on_start: false, all_after_pass: false do
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')  { "spec" }
+guard :minitest, test_folders: 'test', all_on_start: false, spring: true do
+  # テストファイルの監視
+  watch(%r{^test/.+_test\.rb$})
+  # libファイルの監視
+  watch(%r{^lib/(.+)\.rb$}) \
+    { |m| "test/lib/#{m[1]}_test.rb" }
+  # test_helperの監視
+  watch('test/test_helper.rb') \
+    { "test" }
 
-  watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-  watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb" }
-  watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }
-  watch('app/controllers/application_controller.rb')  { "spec/controllers" }
+  # app以下の各ファイルの監視
+  watch(%r{^app/(.+)\.rb$}) \
+    { |m| "test/#{m[1]}_test.rb" }
+  # Viewの監視
+  watch(%r{^app/(.*)(\.erb|\.haml)$}) \
+    { |m| "test/#{m[1]}#{m[2]}_test.rb" }
+  # Controllerの監視
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$}) \
+    { |m| "test/#{m[2]}s/#{m[1]}_#{m[2]}_test.rb" }
+  # test/support以下の監視
+  watch(%r{^test/support/(.+)\.rb$}) \
+    { "test" }
+  # application_controllerの監視
+  watch('app/controllers/application_controller.rb') \
+    { "test/controllers" }
 
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
-
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/rails_helper.rb')  { "spec" }
+  # Viewの監視（フィーチャテスト実行）
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$}) \
+    { |m| "test/features/#{m[1]}_test.rb" }
 end
