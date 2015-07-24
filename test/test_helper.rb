@@ -12,6 +12,9 @@ require "minitest/rails/capybara"
 
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
+require "minitest/reporters"
+Minitest::Reporters.use!
+
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
   include CustomAssertions
