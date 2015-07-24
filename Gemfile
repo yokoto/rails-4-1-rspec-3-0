@@ -54,5 +54,10 @@ group :test do
   gem "launchy", "~> 2.4.2"
   gem "selenium-webdriver"
   gem 'shoulda-matchers', '~> 2.6.2'
+
+  gem 'minitest-rails', '~> 2.2.0'
+  gem 'shoulda', '~> 3.5.0'
+  gem 'mocha', '~> 1.1.0'
+  gem 'minitest-rails-capybara', '~> 2.1.1'
 end
 
