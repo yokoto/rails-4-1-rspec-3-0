@@ -7,7 +7,7 @@ module CustomAssertions
     assert_equal expected.sort, actual.sort
   end
 
-  def assert_a_new klass, object
+  def assert_a_new(klass, object)
     assert_instance_of klass, object
     assert_operator object, :new_record?
   end
