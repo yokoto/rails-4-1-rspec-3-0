@@ -15,6 +15,9 @@ Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 require "minitest/reporters"
 Minitest::Reporters.use!
 
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 class ActiveSupport::TestCase
   include FactoryGirl::Syntax::Methods
   include CustomAssertions

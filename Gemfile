@@ -62,5 +62,6 @@ group :test do
   gem 'mocha', '~> 1.1.0'
   gem 'minitest-rails-capybara', '~> 2.1.1'
   gem 'minitest-reporters', '~> 1.0.19'
+  gem 'poltergeist', '~> 1.6.0'
 end
 
