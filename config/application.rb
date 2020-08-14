@@ -22,7 +22,8 @@ module ContactsRspec3Rails41
 
     config.generators do |g|
       g.test_framework :minitest,
-        fixture: false
+        fixture: false,
+        spec: true
       g.factory_girl false
     end
   end
