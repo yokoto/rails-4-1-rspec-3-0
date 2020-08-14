@@ -64,4 +64,11 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # Webドライバーにchromedriverを使う。
+  # https://qiita.com/jnchito/items/ab23c925a6a78345d737#%E3%81%9D%E3%81%AE2-poltergeist%E7%AD%89%E3%81%AE%E5%88%A5%E3%81%AEweb%E3%83%89%E3%83%A9%E3%82%A4%E3%83%90%E3%81%AB%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B
+  Capybara.register_driver :chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+  Capybara.javascript_driver = :chrome
 end
